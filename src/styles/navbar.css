@@ -1,0 +1,10 @@
+.navbar{    
+    background-color: rgb(42, 171, 171);
+    height: 80px;
+    padding-top: 10px;
+}
+
+.navbar-title{
+    margin: 0;
+    padding: 0;
+}
