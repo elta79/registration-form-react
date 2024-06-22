@@ -1,18 +1,15 @@
 import PropTypes from 'prop-types'
 import '../styles/form.css'
+import handleChange from '../helpers/handleChange'
 
 function FinancialInfo({ formData, setFormData }){
-    function handleChange(e){
-        const { name, value, type, checked } = e.target
-        setFormData(prevFormData => {
-            return{
-                ...prevFormData,
-                [name]: type === 'checkbox'?checked:value,
-                [name]: value
-            }
-        })
+    
+    const handleInputChange = (e) => {
+        handleChange(e, setFormData)
     }
-    return(
+
+    return(       
+
         <div className='financial-info-container'>
         {/* <!-- Financial Information --> */}
             
@@ -21,7 +18,8 @@ function FinancialInfo({ formData, setFormData }){
                 name='financial' 
                 id='financial'                    
                 value={formData.financial}
-                onChange={handleChange}
+                onChange={handleInputChange}
+                required
                 >
                     <option value='selfPay'>Self Pay</option>
                     <option value='medicaid'>Medicaid</option>
@@ -36,7 +34,7 @@ function FinancialInfo({ formData, setFormData }){
                         name='insuranceName' 
                         id='insuranceName'
                         value={formData.insuranceName}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />
                 </label>
                 <label htmlFor='policyId'>Policy Id #
@@ -45,7 +43,7 @@ function FinancialInfo({ formData, setFormData }){
                         name='policyId' 
                         id='policyId'
                         value={formData.policyId}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />
                 </label>
                 <label htmlFor='groupId'>Group Id #
@@ -54,7 +52,7 @@ function FinancialInfo({ formData, setFormData }){
                         name='groupId' 
                         id='groupId'
                         value={formData.groupId}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />
                 </label>
                 <label htmlFor='insurancePhone'>Insurance Phone Number
@@ -63,7 +61,8 @@ function FinancialInfo({ formData, setFormData }){
                         name='insurancePhone' 
                         id='insurancePhone'
                         value={formData.insurancePhone}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
+                        pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                     />
                 </label>
                 <label htmlFor='primaryName'>Primary Insured&apos;s Name
@@ -72,7 +71,7 @@ function FinancialInfo({ formData, setFormData }){
                         name='primaryName' 
                         id='primaryName'
                         value={formData.primaryName}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />
                 </label>
                 <label htmlFor='primaryDob'>Primary Insured&apos;s Date of Birth
@@ -81,7 +80,7 @@ function FinancialInfo({ formData, setFormData }){
                         name='primaryDob' 
                         id='primaryDob'
                         value={formData.primaryDob}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />    
                 </label>
                 <label htmlFor='primaryEmployer'>Primary Insured&apos;s Employer
@@ -90,7 +89,7 @@ function FinancialInfo({ formData, setFormData }){
                         name='primaryEmployer' 
                         className='primaryEmployer'
                         value={formData.primaryEmployer}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />
                 </label>
             <fieldset>
@@ -101,9 +100,9 @@ function FinancialInfo({ formData, setFormData }){
                         type='radio' 
                         name='primaryRelation' 
                         className='primarySpouse}
-                        onChange={handleChange}' 
+                        onChange={handleInputChange}' 
                         value={formData.primarySpouse}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                         checked
                     />
                     <label htmlFor='primarySpouse'>Spouse</label>
@@ -112,7 +111,7 @@ function FinancialInfo({ formData, setFormData }){
                         name='primaryRelation' 
                         className='primaryParent'
                         value={formData.primaryParent}
-                        onChange={handleChange}                    
+                        onChange={handleInputChange}                    
                     />
                     <label htmlFor='primaryParent'>Parent</label>
                 </div>

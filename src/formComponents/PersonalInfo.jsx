@@ -1,42 +1,23 @@
 import PropTypes from 'prop-types'
 import '../styles/form.css'
+import handleChange from '../helpers/handleChange'
+import bmiCalc from '../helpers/bmiCalc'
+import ageCalc from '../helpers/ageCalc'
+
+// TODO modal about c-section risk
 
 function PersonalInfo({ formData, setFormData }){    
-    
-
-    function getAge(dob){
-        //returns a string, split for 1st four and parse to number
-        const ptDob = Number(dob.slice(0,4))  
-        const today = new Date().getFullYear()
-        if (ptDob === 0){
-            return '--'
-        }else{
-            return today-ptDob
-        }        
+ 
+    const getAge = ({dobPatient}) => {
+        return ageCalc(dobPatient)
     }
 
-    function getBMI(feet, inches, weight){
-        const ft = Number(feet)
-        const inc = Number(inches)
-        const height = (ft*12)+inc
-        const wt = Number(weight)
-        const bmi = (703 * (wt/(height**2))).toFixed(1)       
-        if (bmi === 'NaN'){
-            return '--'
-        }else{
-            return (bmi)
-        }        
+    const getBMI = ({feet, inches, weight }) => {        
+        return bmiCalc(feet, inches, weight)
     }
     
-    function handleChange(e){
-        const { name, value, type, checked } = e.target
-        setFormData(prevFormData => {
-            return{
-                ...prevFormData,
-                [name]: type === 'checkbox'?checked:value,
-                [name]: value
-            }
-        })        
+    const handleInputChange = (e) => {
+        handleChange(e, setFormData)
     }
 
     return (
@@ -48,7 +29,7 @@ function PersonalInfo({ formData, setFormData }){
                     name='firstName' 
                     className='firstName'
                     value={formData.firstName}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
                 />
                 <label htmlFor='lastName'>Last Name</label>
@@ -57,7 +38,7 @@ function PersonalInfo({ formData, setFormData }){
                     name='lastName' 
                     className='lastName' 
                     value={formData.lastName}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
                 />       
             
@@ -69,11 +50,12 @@ function PersonalInfo({ formData, setFormData }){
                     name='dobPatient' 
                     className='dobPatient'
                     value={formData.dobPatient}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
-                />        
+                />  
+                {/* age calculator       */}
                 <span>Age</span>
-                <p id='age' >{getAge(formData.dobPatient)}</p>  
+                <p id='age'>{getAge(formData)}</p>  
                 </div>
 
                 <label htmlFor='ssn'>Last 4 of Social Security Number</label>
@@ -82,8 +64,9 @@ function PersonalInfo({ formData, setFormData }){
                     name='ssn'
                     className='ssn'
                     value={formData.ssn}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
+                    pattern='[0-9]{4}'
                 />
             
             
@@ -95,7 +78,7 @@ function PersonalInfo({ formData, setFormData }){
                         name='feet' 
                         className='feet'
                         value={formData.feet}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                         min='1' 
                         max='6' 
                         required
@@ -106,7 +89,7 @@ function PersonalInfo({ formData, setFormData }){
                         name='inches' 
                         className='inches' 
                         value={formData.inches}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                         min='0' 
                         max='11' 
                         required
@@ -119,12 +102,12 @@ function PersonalInfo({ formData, setFormData }){
                     name='weight' 
                     className='weight' 
                     value={formData.weight}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required 
                 />
                 <span>BMI</span>
             {/* BMI Calculator */}
-                <p id='bmi'>{getBMI(formData.feet, formData.inches, formData.weight)}</p>
+                <p id='bmi'>{getBMI(formData)}</p>               
             
            
 {/* <!-- Contact Info --> */}
@@ -135,7 +118,7 @@ function PersonalInfo({ formData, setFormData }){
                 name='address' 
                 className='address' 
                 value={formData.address}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 required
             />
             
@@ -145,14 +128,17 @@ function PersonalInfo({ formData, setFormData }){
                     name='city'
                     className='city'
                     value={formData.city}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
+                    required
                 />
                 <label htmlFor='state'>State</label>
                 <input 
                     type='text' 
                     name='state'
                     className='state'value={formData.state}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
+                    required
+                    pattern='[A-Za-z]{2}'
                 />
                 <label htmlFor='zip'>Zip Code</label>
                 <input 
@@ -160,18 +146,20 @@ function PersonalInfo({ formData, setFormData }){
                     name='zip' 
                     className='zip'
                     value={formData.zip}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
+                    pattern='[0-9]{5}'
                 />
             
                 <label htmlFor='phone'>Phone</label>
                 <input 
-                    type='number' 
+                    type='tel' 
                     name='phone' 
                     className='phone' 
                     value={formData.phone}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
+                    pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                 />
                 <label htmlFor='email'>Email Address</label>
                 <input 
@@ -179,7 +167,7 @@ function PersonalInfo({ formData, setFormData }){
                     name='email' 
                     className='email' 
                     value={formData.email}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
                 />
             
@@ -191,7 +179,8 @@ function PersonalInfo({ formData, setFormData }){
                     name='emergencyName' 
                     className='emergencyName'
                     value={formData.emergencyName}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
+                    
                 />
                 <label htmlFor='emergencyPhone'>Emergency Contact Number</label>
                 <input 
@@ -199,7 +188,8 @@ function PersonalInfo({ formData, setFormData }){
                     name='emergencyPhone' 
                     className='emergencyPhone'
                     value={formData.emergencyPhone}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
+                    pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                 />
             
             
@@ -210,7 +200,7 @@ function PersonalInfo({ formData, setFormData }){
                 name='maritalStatus' 
                 id='maritalStatus'
                 value={formData.maritalStatus}
-                onChange={handleChange}
+                onChange={handleInputChange}
             >
                 <option value='single'>Single</option>
                 <option value='partnership'>Partnership</option>
@@ -229,7 +219,7 @@ function PersonalInfo({ formData, setFormData }){
                     name='partnerName' 
                     className='partnerName'
                     value={formData.partnerName}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
                 <label htmlFor='partnerEmployer'>Partner&apos;s Employer</label>
                 <input 
@@ -237,7 +227,7 @@ function PersonalInfo({ formData, setFormData }){
                     name='partnerEmployer' 
                     className='partnerEmployer'
                     value={formData.partnerEmployer}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
                 <label htmlFor='partnerJobDescription'>Partner&apos;s Job Description</label>
                 <input 
@@ -245,7 +235,7 @@ function PersonalInfo({ formData, setFormData }){
                     name='partnerJobDescription' 
                     className='partnerJobDescription'
                     value={formData.partnerJobDescription}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />  
            
         </div>

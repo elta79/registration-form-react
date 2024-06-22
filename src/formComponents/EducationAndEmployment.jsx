@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types'
 import '../styles/form.css'
+import handleChange from '../helpers/handleChange.jsx'
 
 function EducationAndEmployment({ formData, setFormData }){
-    function handleChange(e){
-        const { name, value, type, checked } = e.target
-        setFormData(prevFormData => {
-            return{
-                ...prevFormData,
-                [name]: type === 'checkbox'?checked:value,
-                [name]: value
-            }
-        })
+
+    const handleInputChange = (e) =>{
+        handleChange(e, setFormData)
     }
 
     return(
@@ -24,7 +19,7 @@ function EducationAndEmployment({ formData, setFormData }){
                     name='isStudent'
                     className='isStudent'
                     value={formData.isStudent}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
                 <label htmlFor='isStudent'>I am currently a student.</label> 
             </div>
@@ -35,7 +30,7 @@ function EducationAndEmployment({ formData, setFormData }){
                 name='education' 
                 id='education'
                 value={formData.education}
-                onChange={handleChange}
+                onChange={handleInputChange}
             >
                 <option value='highSchool'>High School</option>
                 <option value='someCollege'>Some College</option>
@@ -51,7 +46,7 @@ function EducationAndEmployment({ formData, setFormData }){
                     name='isEmployed' 
                     className='isEmployed'
                     value={formData.isEmployed}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
                 <label htmlFor='isEmployed'>I am currently employed.</label>                        
             </div>
@@ -64,7 +59,7 @@ function EducationAndEmployment({ formData, setFormData }){
                     name='employerName' 
                     className='employerName'
                     value={formData.employerName}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
                 <label htmlFor='jobDescription'>Job Description</label>
                 <input 
@@ -72,7 +67,7 @@ function EducationAndEmployment({ formData, setFormData }){
                     name='jobDescription' 
                     className='jobDescription'
                     value={formData.jobDescription}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
             {/* </div> */}
         </div>

@@ -7,7 +7,7 @@ import EducationAndEmployment from '../formComponents/EducationAndEmployment'
 import PregnancyInfo from '../formComponents/PregnancyInfo'
 
 function Form(){
-    const PageTitles = ['Personal Info','Race & Ethnicity', 'Education & Employment', 'Financial Info', 'PregnancyInfo']
+    const PageTitles = ['Personal Info','Race & Ethnicity', 'Education & Employment', 'Financial Info', 'Pregnancy Info']
     
     const [page, setPage] = useState(0)
 
@@ -98,18 +98,21 @@ function Form(){
     }
 
 // ***button functions***
-    function handleNextClick(){
-        if(page === PageTitles.length -1){
-            // ***TODO: set up handleSubmit
-            alert('Form Submitted')
-            
-        }else(setPage(page + 1))
-        
+    function handleNextClick(){        
+        if(page < PageTitles.length-1){
+            setPage(page+1)
+        }        
     }
     function handlePrevClick(){
         if(page > 0){
             setPage(page - 1)
         }
+    }
+
+    function handleSubmit(event){ 
+        event.preventDefault()
+        alert("Form submitted form.jsx")
+        // TODO: set up submit to DB
     }
 
 // ********************************
@@ -126,13 +129,17 @@ function Form(){
                     <h2>{PageTitles[page]}</h2>
                 </div>
                 <div className='formBody'>
-                    <form >
+                    <form onSubmit={handleSubmit} >
                         {PageDisplay()}
+                        {/* Submit button hidden until on last page */}
+                        <div className='submitButtonContainer'>
+                            <button className="btn-submit" style={{display: page === PageTitles.length-1 ? 'block' : 'none'}} onClick={handleSubmit}>Submit</button>
+                        </div>
                     </form>
                 </div>
                 <div className='formFooter'>
                     <button onClick={handlePrevClick} disabled={page === 0} >Prev</button>
-                    <button onClick={handleNextClick} >{page === PageTitles.length-1 ? 'Submit' : 'Next'}</button>
+                    <button onClick={handleNextClick} disabled={page === PageTitles.length-1}>Next</button>                    
                 </div>            
             </div>            
         </div>

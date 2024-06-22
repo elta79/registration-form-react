@@ -1,39 +1,21 @@
 import PropTypes from 'prop-types'
 import '../styles/form.css'
+import handleChange from '../helpers/handleChange'
+import eddCalc from '../helpers/eddCalc'
 
 // ****TODO: auto resize textarea***
 
 // *******TODO: choose lmp or concept to calc EDD
-function eddCalc(lmp){
-    const lmpDateSelected = new Date(lmp) //convert string to date obj
-    const day = lmpDateSelected.getUTCDate()
-    const month = lmpDateSelected.getUTCMonth()
-    const year = lmpDateSelected.getUTCFullYear()
-    const lmpInMilliSeconds = Date.UTC(year, month, day+1)
 
-    // add ms of lmp to avg preg num ms
-    const avgPregMs = 24192000000
-    const eddInMilliSeconds = avgPregMs + lmpInMilliSeconds
-    const edd = new Date(eddInMilliSeconds).toLocaleDateString()
-    if(lmp === ''){
-        return ('')
-    }else{
-        return (<p>Based on your last period, we estimate your due date to be: <span id='edd'>{edd}</span></p>)
-    }
-   
+
+const getEdd = ({lmp}) => {
+    return eddCalc(lmp)
 }
 
 function PregnancyInfo({ formData, setFormData }){
 
-    function handleChange(e){
-        const { name, value, type, checked } = e.target
-        setFormData(prevFormData => {
-            return{
-                ...prevFormData,
-                [name]: type === 'checkbox'?checked:value,
-                [name]: value
-            }
-        })
+    const handleInputChange = (e) =>{
+        handleChange(e, setFormData)
     }
 
     return (
@@ -46,14 +28,14 @@ function PregnancyInfo({ formData, setFormData }){
                     name='lmp' 
                     className='lmp' 
                     value={formData.lmp}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
                 /> 
             </label>
 
             {/* ***Estimated Due Date Calculator*** */}
             <div className='eddCalc'>
-                {eddCalc(formData.lmp)}
+                {getEdd(formData)}
                 <p>Please input the date you believe to be your estimated due date in the field below.</p>
             </div>
 
@@ -63,7 +45,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='edd' 
                     className='edd' 
                     value={formData.edd}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     required
                 /> 
             </label>
@@ -73,7 +55,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='isReceivingCare' 
                     className='isReceivingCare'
                     value={formData.isReceivingCare}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
                 <label htmlFor='isReceivingCare'>I am currently receiving or have received prenatal care.</label>                        
             </div>
@@ -85,7 +67,7 @@ function PregnancyInfo({ formData, setFormData }){
                         name='careProvider' 
                         className='careProvider'
                         value={formData.careProvider}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />
                 </label>
                 <label htmlFor='firstVisit'>Date of First Visit
@@ -94,7 +76,7 @@ function PregnancyInfo({ formData, setFormData }){
                         name='firstVisit' 
                         className='firstVisit'
                         value={formData.firstVisit}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />
                 </label>
                 <label htmlFor='lastVisit'>Date of Last Visit
@@ -103,7 +85,7 @@ function PregnancyInfo({ formData, setFormData }){
                         name='lastVisit' 
                         className='lastVisit'
                         value={formData.lastVisit}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                     />
                 </label>
             </div>
@@ -114,7 +96,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='numberPregnancies' 
                     className='numberPregnancies'
                     value={formData.numberPregnancies}
-                    onChange={handleChange} 
+                    onChange={handleInputChange} 
                     min='1'
                 />
             </label>
@@ -127,7 +109,7 @@ function PregnancyInfo({ formData, setFormData }){
                         name='numberMiscarriages' 
                         className='numberMiscarriages'
                         value={formData.numberMiscarriages}
-                        onChange={handleChange} 
+                        onChange={handleInputChange} 
                     />
                 </label>
                 <label htmlFor='numberElectiveAbortions'>Number of elective abortions experienced
@@ -136,7 +118,7 @@ function PregnancyInfo({ formData, setFormData }){
                         name='numberElectiveAbortions' 
                         className='numberElectiveAbortions'
                         value={formData.numberElectiveAbortions}
-                        onChange={handleChange} 
+                        onChange={handleInputChange} 
                     />
                 </label>
                 <label htmlFor='numberBirths'>Total number of births experienced
@@ -145,7 +127,7 @@ function PregnancyInfo({ formData, setFormData }){
                         name='numberBirths' 
                         className='numberBirths'
                         value={formData.numberBirths}
-                        onChange={handleChange} 
+                        onChange={handleInputChange} 
                     />
                 </label>
                 <label htmlFor='numberPretermBirths'>Number of births before 37 weeks gestation experienced
@@ -154,7 +136,7 @@ function PregnancyInfo({ formData, setFormData }){
                         name='numberPretermBirths' 
                         className='numberPretermBirths'
                         value={formData.numberPretermBirths}
-                        onChange={handleChange} 
+                        onChange={handleInputChange} 
                     />
                 </label>
 
@@ -167,7 +149,7 @@ function PregnancyInfo({ formData, setFormData }){
                         name='descriptionPreviousPregnancy' 
                         className='descriptionPreviousPregnancy'
                         value={formData.descriptionPreviousPregnancy}
-                        onChange={handleChange}                     
+                        onChange={handleInputChange}                     
                     ></textarea>
                 </label>
                     
@@ -179,7 +161,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='previousPregnancyComplication' 
                     className='previousPregnancyComplication'
                     value={formData.previousPregnancyComplication}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 ></textarea>
             </label>
             <label htmlFor=''>Please describe any diagnosis of any medical conditions, hospitalizations, and/or surgeries that you have experienced.
@@ -187,7 +169,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='previousDiagnosis' 
                     className='previousDiagnosis'
                     value={formData.previousDiagnosis}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 ></textarea>
             </label>
             <label htmlFor=''>Please list any and all medications you are currently taking, including the reason and why you are taking it.
@@ -195,7 +177,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='currentMedications' 
                     className='currentMedications' 
                     value={formData.currentMedications}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 ></textarea>
             </label>
 
@@ -205,7 +187,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='otherProvider' 
                     className='otherProvider'
                     value={formData.otherProvider}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                 />
                 <label htmlFor='otherProvider'>I am currently under the care of another provider for a reason outside of this pregnancy.</label>            
             </div>
@@ -216,7 +198,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='providerReason' 
                     className='providerReason'
                     value={formData.providerReason}
-                    onChange={handleChange}>
+                    onChange={handleInputChange}>
                 </textarea>
             </label>
             <label htmlFor='birthCenterReason'>What brought you to the birth center?
@@ -224,7 +206,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='birthCenterReason' 
                     className='birthCenterReason' 
                     value={formData.birthCenterReason}
-                    onChange={handleChange}>
+                    onChange={handleInputChange}>
                 </textarea>
             </label>
             <label htmlFor='maternityCare'>What type of maternity care experience are you looking for?
@@ -232,7 +214,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='maternityCare' 
                     className='maternityCare'                     
                     value={formData.maternityCare}
-                    onChange={handleChange}>
+                    onChange={handleInputChange}>
                 </textarea>
             </label>
             <label htmlFor='discuss'>Is there any thing in particular you wish to discuss with the midwife?
@@ -240,7 +222,7 @@ function PregnancyInfo({ formData, setFormData }){
                     name='discuss' 
                     className='discuss' 
                     value={formData.discuss}
-                    onChange={handleChange}>
+                    onChange={handleInputChange}>
                 </textarea>
             </label>
         </div>
