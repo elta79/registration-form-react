@@ -22,7 +22,8 @@ function PregnancyInfo({ formData, setFormData }){
         <div className='pregnancy-info-container'>
             {/* <!-- Pregnancy / Birth Information --> */}
 
-            <label htmlFor='lmp'>First Day of Last Period
+            <label>
+                First Day of Last Period
                 <input 
                     type='date' 
                     name='lmp' 
@@ -39,7 +40,8 @@ function PregnancyInfo({ formData, setFormData }){
                 <p>Please input the date you believe to be your estimated due date in the field below.</p>
             </div>
 
-            <label htmlFor='edd'>Estimated Due Date
+            <label>
+                Estimated Due Date
                 <input 
                     type='date' 
                     name='edd' 
@@ -50,6 +52,7 @@ function PregnancyInfo({ formData, setFormData }){
                 /> 
             </label>
             <div className='container-checkbox'>
+            <label className='label-grid'>
                 <input 
                     type='checkbox' 
                     name='isReceivingCare' 
@@ -57,11 +60,12 @@ function PregnancyInfo({ formData, setFormData }){
                     value={formData.isReceivingCare}
                     onChange={handleInputChange}
                 />
-                <label htmlFor='isReceivingCare'>I am currently receiving or have received prenatal care.</label>                        
+                I am currently receiving or have received prenatal care.</label>                        
             </div>
             {/* <!-- TODO: revealed only if is-receiving-care --> */}
             <div className='container previousCare'>
-                <label htmlFor='careProvider'>Care Provider&apos;s Name
+                <label >
+                    Care Provider's Name
                     <input 
                         type='text' 
                         name='careProvider' 
@@ -70,7 +74,8 @@ function PregnancyInfo({ formData, setFormData }){
                         onChange={handleInputChange}
                     />
                 </label>
-                <label htmlFor='firstVisit'>Date of First Visit
+                <label>
+                    Date of First Visit
                     <input 
                         type='date' 
                         name='firstVisit' 
@@ -79,7 +84,8 @@ function PregnancyInfo({ formData, setFormData }){
                         onChange={handleInputChange}
                     />
                 </label>
-                <label htmlFor='lastVisit'>Date of Last Visit
+                <label>
+                    Date of Last Visit
                     <input 
                         type='date' 
                         name='lastVisit' 
@@ -90,7 +96,8 @@ function PregnancyInfo({ formData, setFormData }){
                 </label>
             </div>
 
-            <label htmlFor='numberPregnancies'>Number of pregnancies experienced (include this one)
+            <label>
+                Number of pregnancies experienced (include this one)
                 <input 
                     type='number' 
                     name='numberPregnancies' 
@@ -103,7 +110,8 @@ function PregnancyInfo({ formData, setFormData }){
 
             {/* <!-- TODO: reveal only if number-pregnancies > 0 --> */}
             <div className='container previousPregnancy'>
-                <label htmlFor='numberMiscarriages'>Number of miscarriages experienced
+                <label>
+                    Number of miscarriages experienced
                     <input 
                         type='number' 
                         name='numberMiscarriages' 
@@ -112,7 +120,8 @@ function PregnancyInfo({ formData, setFormData }){
                         onChange={handleInputChange} 
                     />
                 </label>
-                <label htmlFor='numberElectiveAbortions'>Number of elective abortions experienced
+                <label>
+                    Number of elective abortions experienced
                     <input 
                         type='number' 
                         name='numberElectiveAbortions' 
@@ -121,7 +130,8 @@ function PregnancyInfo({ formData, setFormData }){
                         onChange={handleInputChange} 
                     />
                 </label>
-                <label htmlFor='numberBirths'>Total number of births experienced
+                <label>
+                    Total number of births experienced
                     <input 
                         type='number' 
                         name='numberBirths' 
@@ -130,7 +140,8 @@ function PregnancyInfo({ formData, setFormData }){
                         onChange={handleInputChange} 
                     />
                 </label>
-                <label htmlFor='numberPretermBirths'>Number of births before 37 weeks gestation experienced
+                <label>
+                    Number of births before 37 weeks gestation experienced
                     <input 
                         type='number' 
                         name='numberPretermBirths' 
@@ -143,7 +154,8 @@ function PregnancyInfo({ formData, setFormData }){
             {/* <!-- Previous Pregnancy Info --> */}
 
 
-                <label htmlFor='previousPregnancyInfo'>Please provide some details about previous pregnancy and/or birth experiences <br/>
+                <label>
+                    Please provide some details about previous pregnancy and/or birth experiences <br/>
                     (Date, # of weeks at birth/loss, any problems).
                     <textarea 
                         name='descriptionPreviousPregnancy' 
@@ -156,7 +168,8 @@ function PregnancyInfo({ formData, setFormData }){
             </div>
 
 
-            <label htmlFor=''>Please describe any complications of a pregnancy (past or present) that you have experienced.
+            <label>
+                Please describe any complications of a pregnancy (past or present) that you have experienced.
                 <textarea 
                     name='previousPregnancyComplication' 
                     className='previousPregnancyComplication'
@@ -164,7 +177,8 @@ function PregnancyInfo({ formData, setFormData }){
                     onChange={handleInputChange}
                 ></textarea>
             </label>
-            <label htmlFor=''>Please describe any diagnosis of any medical conditions, hospitalizations, and/or surgeries that you have experienced.
+            <label>
+                Please describe any diagnosis of any medical conditions, hospitalizations, and/or surgeries that you have experienced.
                 <textarea 
                     name='previousDiagnosis' 
                     className='previousDiagnosis'
@@ -172,7 +186,8 @@ function PregnancyInfo({ formData, setFormData }){
                     onChange={handleInputChange}
                 ></textarea>
             </label>
-            <label htmlFor=''>Please list any and all medications you are currently taking, including the reason and why you are taking it.
+            <label>
+                Please list any and all medications you are currently taking, including the reason and why you are taking it.
                 <textarea 
                     name='currentMedications' 
                     className='currentMedications' 
@@ -182,18 +197,21 @@ function PregnancyInfo({ formData, setFormData }){
             </label>
 
             <div className='container-checkbox'>
-                <input 
-                    type='checkbox' 
-                    name='otherProvider' 
-                    className='otherProvider'
-                    value={formData.otherProvider}
-                    onChange={handleInputChange}
-                />
-                <label htmlFor='otherProvider'>I am currently under the care of another provider for a reason outside of this pregnancy.</label>            
+                <label className='label-grid'>
+                    <input 
+                        type='checkbox' 
+                        name='otherProvider' 
+                        className='otherProvider'
+                        value={formData.otherProvider}
+                        onChange={handleInputChange}
+                    />
+                    I am currently under the care of another provider for a reason outside of this pregnancy.
+                    </label>            
             </div>
 
             {/* <!-- TODO: reveal only if other-provider --> */}
-            <label htmlFor='providerReason'>Please list the provider name and why you are seeing them.
+            <label>
+                Please list the provider name and why you are seeing them.
                 <textarea 
                     name='providerReason' 
                     className='providerReason'
@@ -201,7 +219,8 @@ function PregnancyInfo({ formData, setFormData }){
                     onChange={handleInputChange}>
                 </textarea>
             </label>
-            <label htmlFor='birthCenterReason'>What brought you to the birth center?
+            <label>
+                What brought you to the birth center?
                 <textarea 
                     name='birthCenterReason' 
                     className='birthCenterReason' 
@@ -209,7 +228,8 @@ function PregnancyInfo({ formData, setFormData }){
                     onChange={handleInputChange}>
                 </textarea>
             </label>
-            <label htmlFor='maternityCare'>What type of maternity care experience are you looking for?
+            <label>
+                What type of maternity care experience are you looking for?
                 <textarea 
                     name='maternityCare' 
                     className='maternityCare'                     
@@ -217,7 +237,8 @@ function PregnancyInfo({ formData, setFormData }){
                     onChange={handleInputChange}>
                 </textarea>
             </label>
-            <label htmlFor='discuss'>Is there any thing in particular you wish to discuss with the midwife?
+            <label>
+                Is there any thing in particular you wish to discuss with the midwife?
                 <textarea 
                     name='discuss' 
                     className='discuss' 

@@ -68,7 +68,8 @@ select {
     margin: 8px 0;
     box-sizing: border-box;
     border: 1px solid gray;
-    border-radius: 8px;        
+    border-radius: 8px;    
+       
 }
 
 textarea {
@@ -103,18 +104,16 @@ textarea::-webkit-scrollbar{
     gap:1rem;
 }
 
-
-
 /* Education */
 
 .container-checkbox{
-    box-sizing: border-box;
-    /* border: 1px solid gray; */
-    border-radius: 8px;
-    padding: 10px 0px;
+    display: flex; 
+    padding: 20px 0;
+}
+.label-grid{
     display:grid;
-    grid-template-columns: 0.1fr 1fr;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;    
 }
 
 
@@ -140,3 +139,5 @@ fieldset{
 #edd{
     font-weight: bold;
 }
+
+/* Financial Info */

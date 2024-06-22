@@ -23,88 +23,100 @@ function PersonalInfo({ formData, setFormData }){
     return (
         <div className='personal-info-container'>
             
-                <label htmlFor='firstName'>First Name</label>
-                <input 
-                    type='text'                     
-                    name='firstName' 
-                    className='firstName'
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    required
-                />
-                <label htmlFor='lastName'>Last Name</label>
-                <input 
-                    type='text' 
-                    name='lastName' 
-                    className='lastName' 
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    required
-                />       
-            
+                <label>
+                    First Name
+                    <input 
+                        type='text'                     
+                        name='firstName' 
+                        className='firstName'
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </label>
+                <label>
+                    Last Name
+                    <input 
+                        type='text' 
+                        name='lastName' 
+                        className='lastName' 
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        required
+                    />       
+                </label>
             
             <div >
-                <label htmlFor='dobPatient'>Date of Birth</label>
-                <input 
-                    type='date'
-                    name='dobPatient' 
-                    className='dobPatient'
-                    value={formData.dobPatient}
-                    onChange={handleInputChange}
-                    required
-                />  
+                <label>
+                    Date of Birth
+                    <input 
+                        type='date'
+                        name='dobPatient' 
+                        className='dobPatient'
+                        value={formData.dobPatient}
+                        onChange={handleInputChange}
+                        required
+                    />  
+                </label>
                 {/* age calculator       */}
                 <span>Age</span>
                 <p id='age'>{getAge(formData)}</p>  
                 </div>
 
-                <label htmlFor='ssn'>Last 4 of Social Security Number</label>
-                <input 
-                    type='text' 
-                    name='ssn'
-                    className='ssn'
-                    value={formData.ssn}
-                    onChange={handleInputChange}
-                    required
-                    pattern='[0-9]{4}'
-                />
-            
+                <label>
+                    Last 4 of Social Security Number
+                    <input 
+                        type='text' 
+                        name='ssn'
+                        className='ssn'
+                        value={formData.ssn}
+                        onChange={handleInputChange}
+                        required
+                        pattern='[0-9]{4}'
+                    />
+                </label>
             
                 <span>Height</span>
                 <div id='height' >
-                    <label htmlFor='feet'>Feet</label>
-                    <input 
-                        type='number' 
-                        name='feet' 
-                        className='feet'
-                        value={formData.feet}
-                        onChange={handleInputChange}
-                        min='1' 
-                        max='6' 
-                        required
-                    />
-                    <label htmlFor='inches'>Inches</label>
-                    <input 
-                        type='number' 
-                        name='inches' 
-                        className='inches' 
-                        value={formData.inches}
-                        onChange={handleInputChange}
-                        min='0' 
-                        max='11' 
-                        required
-                    />
+                    <label>
+                        Feet
+                        <input 
+                            type='number' 
+                            name='feet' 
+                            className='feet'
+                            value={formData.feet}
+                            onChange={handleInputChange}
+                            min='1' 
+                            max='6' 
+                            required
+                        />
+                    </label>
+                    <label>
+                        Inches
+                        <input 
+                            type='number' 
+                            name='inches' 
+                            className='inches' 
+                            value={formData.inches}
+                            onChange={handleInputChange}
+                            min='0' 
+                            max='11' 
+                            required
+                        />
+                    </label>
                 </div>                
             
-                <label htmlFor='weight'>Weight (in pounds)</label>
-                <input 
-                    type='number' 
-                    name='weight' 
-                    className='weight' 
-                    value={formData.weight}
-                    onChange={handleInputChange}
-                    required 
-                />
+                <label>
+                    Weight (in pounds)
+                    <input 
+                        type='number' 
+                        name='weight' 
+                        className='weight' 
+                        value={formData.weight}
+                        onChange={handleInputChange}
+                        required 
+                    />
+                </label>
                 <span>BMI</span>
             {/* BMI Calculator */}
                 <p id='bmi'>{getBMI(formData)}</p>               
@@ -112,132 +124,156 @@ function PersonalInfo({ formData, setFormData }){
            
 {/* <!-- Contact Info --> */}
 
-            <label htmlFor='address'>Address</label>
-            <input 
-                type='text' 
-                name='address' 
-                className='address' 
-                value={formData.address}
-                onChange={handleInputChange}
-                required
-            />
+            <label>
+                Address
+                <input 
+                    type='text' 
+                    name='address' 
+                    className='address' 
+                    autoComplete='street-address'
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    required
+                />
+            </label>
+                <label>
+                    City
+                    <input 
+                        type='text' 
+                        name='city'
+                        className='city'
+                        value={formData.city}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </label>
+                <label>
+                    State
+                    <input 
+                        type='text' 
+                        name='state'
+                        className='state'value={formData.state}
+                        onChange={handleInputChange}
+                        required
+                        pattern='[A-Za-z]{2}'
+                    />
+                </label>
+                <label>
+                    Zip Code
+                    <input 
+                        type='text' 
+                        name='zip' 
+                        className='zip'
+                        value={formData.zip}
+                        onChange={handleInputChange}
+                        required
+                        pattern='[0-9]{5}'
+                    />
+                </label>
             
-                <label htmlFor='city'>City</label>
-                <input 
-                    type='text' 
-                    name='city'
-                    className='city'
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    required
-                />
-                <label htmlFor='state'>State</label>
-                <input 
-                    type='text' 
-                    name='state'
-                    className='state'value={formData.state}
-                    onChange={handleInputChange}
-                    required
-                    pattern='[A-Za-z]{2}'
-                />
-                <label htmlFor='zip'>Zip Code</label>
-                <input 
-                    type='text' 
-                    name='zip' 
-                    className='zip'
-                    value={formData.zip}
-                    onChange={handleInputChange}
-                    required
-                    pattern='[0-9]{5}'
-                />
-            
-                <label htmlFor='phone'>Phone</label>
-                <input 
-                    type='tel' 
-                    name='phone' 
-                    className='phone' 
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-                />
-                <label htmlFor='email'>Email Address</label>
-                <input 
-                    type='email' 
-                    name='email' 
-                    className='email' 
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                />
+                <label>
+                    Phone
+                    <input 
+                        type='tel' 
+                        name='phone' 
+                        className='phone'
+                        autoComplete='tel'
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+                    />
+                </label>
+                <label>
+                    Email Address
+                    <input 
+                        type='email' 
+                        name='email' 
+                        className='email'
+                        autoComplete='email'
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </label>
             
 {/* <!-- Emergency Contact --> */}
             
-                <label htmlFor='emergencyName'>Emergency Contact Name</label>
-                <input 
-                    type='text' 
-                    name='emergencyName' 
-                    className='emergencyName'
-                    value={formData.emergencyName}
-                    onChange={handleInputChange}
-                    
-                />
-                <label htmlFor='emergencyPhone'>Emergency Contact Number</label>
-                <input 
-                    type='text' 
-                    name='emergencyPhone' 
-                    className='emergencyPhone'
-                    value={formData.emergencyPhone}
-                    onChange={handleInputChange}
-                    pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-                />
+                <label>
+                    Emergency Contact Name
+                    <input 
+                        type='text' 
+                        name='emergencyName' 
+                        className='emergencyName'
+                        value={formData.emergencyName}
+                        onChange={handleInputChange}                    
+                    />
+                </label>
+                <label>
+                    Emergency Contact Number
+                    <input 
+                        type='text' 
+                        name='emergencyPhone' 
+                        className='emergencyPhone'
+                        value={formData.emergencyPhone}
+                        onChange={handleInputChange}
+                        pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+                    />
+                </label>
             
             
 
 {/* <!-- Marital Status / Partner Info --> */}
-            <label htmlFor='maritalStatus'>Marital Status:</label>
-            <select 
-                name='maritalStatus' 
-                id='maritalStatus'
-                value={formData.maritalStatus}
-                onChange={handleInputChange}
-            >
-                <option value='single'>Single</option>
-                <option value='partnership'>Partnership</option>
-                <option value='married'>Married</option>
-                <option value='separated'>Separated</option>
-                <option value='divorced'>Divorced</option>
-                <option value='widowed'>Widowed</option>
-            </select>
+            <label>
+                Marital Status:
+                <select 
+                    name='maritalStatus' 
+                    id='maritalStatus'
+                    value={formData.maritalStatus}
+                    onChange={handleInputChange}
+                >
+                    <option value='single'>Single</option>
+                    <option value='partnership'>Partnership</option>
+                    <option value='married'>Married</option>
+                    <option value='separated'>Separated</option>
+                    <option value='divorced'>Divorced</option>
+                    <option value='widowed'>Widowed</option>
+                </select>
+            </label>
 
 {/* <!-- TODO: revealed only if marital status is partnership, married --> */}
 
             
-                <label htmlFor='partnerName'>Partner&apos;s Full Name</label>
-                <input 
-                    type='text' 
-                    name='partnerName' 
-                    className='partnerName'
-                    value={formData.partnerName}
-                    onChange={handleInputChange}
-                />
-                <label htmlFor='partnerEmployer'>Partner&apos;s Employer</label>
-                <input 
-                    type='text' 
-                    name='partnerEmployer' 
-                    className='partnerEmployer'
-                    value={formData.partnerEmployer}
-                    onChange={handleInputChange}
-                />
-                <label htmlFor='partnerJobDescription'>Partner&apos;s Job Description</label>
-                <input 
-                    type='text' 
-                    name='partnerJobDescription' 
-                    className='partnerJobDescription'
-                    value={formData.partnerJobDescription}
-                    onChange={handleInputChange}
-                />  
-           
+                <label>
+                    Partner's Full Name
+                    <input 
+                        type='text' 
+                        name='partnerName' 
+                        className='partnerName'
+                        value={formData.partnerName}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <label>
+                    Partner's Employer
+                    <input 
+                        type='text' 
+                        name='partnerEmployer' 
+                        className='partnerEmployer'
+                        value={formData.partnerEmployer}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <label>
+                    Partner's Job Description
+                    <input 
+                        type='text' 
+                        name='partnerJobDescription' 
+                        className='partnerJobDescription'
+                        value={formData.partnerJobDescription}
+                        onChange={handleInputChange}
+                    />  
+                </label>
         </div>
     )
 }

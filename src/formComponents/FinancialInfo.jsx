@@ -13,7 +13,8 @@ function FinancialInfo({ formData, setFormData }){
         <div className='financial-info-container'>
         {/* <!-- Financial Information --> */}
             
-            <label htmlFor='financial'>Financial Situation:
+            <label>
+                Financial Situation:
                 <select 
                 name='financial' 
                 id='financial'                    
@@ -28,7 +29,8 @@ function FinancialInfo({ formData, setFormData }){
             </label>
             {/* <!-- TODO: revealed only if financial is medicaid, insurance --> */}
             {/* <div className='container payorInfo'> */}
-                <label htmlFor='insuranceName'>Insurance Company Name
+                <label>
+                    Insurance Company Name
                     <input 
                         type='text' 
                         name='insuranceName' 
@@ -37,7 +39,8 @@ function FinancialInfo({ formData, setFormData }){
                         onChange={handleInputChange}
                     />
                 </label>
-                <label htmlFor='policyId'>Policy Id #
+                <label>
+                    Policy Id #
                     <input 
                         type='text' 
                         name='policyId' 
@@ -46,7 +49,8 @@ function FinancialInfo({ formData, setFormData }){
                         onChange={handleInputChange}
                     />
                 </label>
-                <label htmlFor='groupId'>Group Id #
+                <label>
+                    Group Id #
                     <input 
                         type='text' 
                         name='groupId' 
@@ -55,9 +59,10 @@ function FinancialInfo({ formData, setFormData }){
                         onChange={handleInputChange}
                     />
                 </label>
-                <label htmlFor='insurancePhone'>Insurance Phone Number
+                <label>
+                    Insurance Phone Number
                     <input 
-                        type='text' 
+                        type='tel' 
                         name='insurancePhone' 
                         id='insurancePhone'
                         value={formData.insurancePhone}
@@ -65,7 +70,8 @@ function FinancialInfo({ formData, setFormData }){
                         pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                     />
                 </label>
-                <label htmlFor='primaryName'>Primary Insured&apos;s Name
+                <label>
+                    Primary Insured's Name
                     <input 
                         type='text' 
                         name='primaryName' 
@@ -74,7 +80,8 @@ function FinancialInfo({ formData, setFormData }){
                         onChange={handleInputChange}
                     />
                 </label>
-                <label htmlFor='primaryDob'>Primary Insured&apos;s Date of Birth
+                <label>
+                    Primary Insured's Date of Birth
                     <input 
                         type='date' 
                         name='primaryDob' 
@@ -83,7 +90,8 @@ function FinancialInfo({ formData, setFormData }){
                         onChange={handleInputChange}
                     />    
                 </label>
-                <label htmlFor='primaryEmployer'>Primary Insured&apos;s Employer
+                <label>
+                    Primary Insured's Employer
                     <input 
                         type='text' 
                         name='primaryEmployer' 
@@ -93,27 +101,30 @@ function FinancialInfo({ formData, setFormData }){
                     />
                 </label>
             <fieldset>
-                <legend>Primary Insured&apos;s Relation to Patient</legend>   
+                <legend>Primary Insured's Relation to Patient</legend>   
                 <div className='grid-style'>
-             
-                    <input 
-                        type='radio' 
-                        name='primaryRelation' 
-                        className='primarySpouse}
-                        onChange={handleInputChange}' 
-                        value={formData.primarySpouse}
-                        onChange={handleInputChange}
-                        checked
-                    />
-                    <label htmlFor='primarySpouse'>Spouse</label>
-                    <input 
-                        type='radio' 
-                        name='primaryRelation' 
-                        className='primaryParent'
-                        value={formData.primaryParent}
-                        onChange={handleInputChange}                    
-                    />
-                    <label htmlFor='primaryParent'>Parent</label>
+                    <label className='label-grid'>
+                        <input 
+                            type='radio' 
+                            name='primaryRelation' 
+                            className='primarySpouse}
+                            onChange={handleInputChange}' 
+                            value={formData.primarySpouse}
+                            onChange={handleInputChange}
+                            checked
+                        />
+                        Spouse
+                    </label>
+                    <label className='label-grid'>
+                        <input 
+                            type='radio' 
+                            name='primaryRelation' 
+                            className='primaryParent'
+                            value={formData.primaryParent}
+                            onChange={handleInputChange}                    
+                        />
+                        Parent
+                    </label>
                 </div>
             </fieldset>    
 
